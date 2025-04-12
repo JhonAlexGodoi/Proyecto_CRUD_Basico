@@ -6,13 +6,13 @@ namespace Proyecto_CRUD_Basico.Forms
 {
     public partial class ProductoForms : Form
     {
-        private readonly ProductoServices _productoServices;
+        private readonly CategoriaControllers _categoriaControllers;
         private readonly ProductoControllers _productoController;
 
         public ProductoForms()
         {
             InitializeComponent();
-            _productoServices = new ProductoServices();
+            _categoriaControllers = new CategoriaControllers();
             _productoController = new ProductoControllers();
         }
 
@@ -20,12 +20,12 @@ namespace Proyecto_CRUD_Basico.Forms
         {
             var newProducto = new Producto()
             {
-                Id = Convert.ToInt32(npdId.Value),
+                //Id = Convert.ToInt32(npdId.Value),
                 Nombre = txtNombre.Text,
                 CodigoBarra = txtCodigoBarra.Text,
                 Descripcion = rtxtDescripcion.Text,
                 Precio = Convert.ToInt32(txtPrecio.Text),
-                Categoria = cmbCategoria.Text,
+                CategoriaId = Convert.ToInt32(cmbCategoria.SelectedValue),
                 Stock = Convert.ToInt32(txtStock.Text),
             };
             bool result = _productoController.CreateProducto(newProducto);
@@ -55,7 +55,7 @@ namespace Proyecto_CRUD_Basico.Forms
                     txtCodigoBarra.Text = producto.CodigoBarra;
                     rtxtDescripcion.Text = producto.Descripcion;
                     txtPrecio.Text = producto.Precio.ToString();
-                    cmbCategoria.Text = producto.Categoria;
+                    //cmbCategoria.Text = producto.Categoria;
                     txtStock.Text = producto.Stock.ToString();
                 }
                 else
@@ -74,7 +74,7 @@ namespace Proyecto_CRUD_Basico.Forms
                 CodigoBarra = txtCodigoBarra.Text,
                 Descripcion = rtxtDescripcion.Text,
                 Precio = Convert.ToInt32(txtPrecio.Text),
-                Categoria = cmbCategoria.Text,
+                //Categoria = cmbCategoria.Text,
                 Stock = Convert.ToInt32(txtStock.Text),
             };
             bool result = _productoController.UpdateProducto(updatedProducto);
@@ -129,6 +129,14 @@ namespace Proyecto_CRUD_Basico.Forms
             dataGridView1.DataSource = null; // ← Limpia la tabla
             dataGridView1.DataSource = _productoController.GetAllProductos();
             dataGridView1.Refresh(); // ← Refresca
+        }
+
+        private void ProductoForms_Load(object sender, EventArgs e)
+        {
+            cmbCategoria.DataSource = _categoriaControllers.GetAllCategorias();
+            cmbCategoria.SelectedIndex = 0;
+            cmbCategoria.DisplayMember = "Nombre";
+            cmbCategoria.ValueMember = "Id";
         }
     }
 }

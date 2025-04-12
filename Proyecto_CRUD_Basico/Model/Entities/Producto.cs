@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Proyecto_CRUD_Basico.Model.Entities
 {
@@ -29,9 +24,11 @@ namespace Proyecto_CRUD_Basico.Model.Entities
         [Required]
         public int Precio { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string Categoria { get; set; }
+        //CREAMOS CLAVES FORANEAS
+        [ForeignKey("CategoriaId")]
+        public int CategoriaId { get; set; }
+        public virtual Categoria Categoria { get; set; }
+        //**********************
 
         [Required]
         public int Stock { get; set; }

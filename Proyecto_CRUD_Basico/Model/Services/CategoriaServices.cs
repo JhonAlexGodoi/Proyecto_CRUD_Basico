@@ -6,14 +6,12 @@ namespace Proyecto_CRUD_Basico.Model.Services
 {
     public class CategoriaServices
     {
-        //private List<Categoria> tablaCategorias;
         private readonly AplicationDbContext _context;
 
         public CategoriaServices()
         {
-            //tablaCategorias = new List<Categoria>();
             var optionsBuilder = new DbContextOptionsBuilder<AplicationDbContext>();
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TresCapas;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer(Properties.Settings.Default.ConnectionString);
 
             _context = new AplicationDbContext(optionsBuilder.Options);
         }

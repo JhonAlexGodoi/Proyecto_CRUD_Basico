@@ -11,7 +11,7 @@ namespace Proyecto_CRUD_Basico
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new CategoriaForms());
+            Application.Run(new ProductoForms());
         }
     }
 }

@@ -87,7 +87,7 @@
             // 
             lblDescripcion.AutoSize = true;
             lblDescripcion.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
-            lblDescripcion.Location = new Point(342, 110);
+            lblDescripcion.Location = new Point(310, 100);
             lblDescripcion.Name = "lblDescripcion";
             lblDescripcion.Size = new Size(77, 17);
             lblDescripcion.TabIndex = 3;
@@ -161,16 +161,16 @@
             // cmbCategoria
             // 
             cmbCategoria.FormattingEnabled = true;
-            cmbCategoria.Location = new Point(189, 163);
+            cmbCategoria.Location = new Point(195, 163);
             cmbCategoria.Name = "cmbCategoria";
-            cmbCategoria.Size = new Size(121, 25);
+            cmbCategoria.Size = new Size(481, 25);
             cmbCategoria.TabIndex = 12;
             // 
             // rtxtDescripcion
             // 
             rtxtDescripcion.Location = new Point(333, 130);
             rtxtDescripcion.Name = "rtxtDescripcion";
-            rtxtDescripcion.Size = new Size(394, 58);
+            rtxtDescripcion.Size = new Size(394, 30);
             rtxtDescripcion.TabIndex = 13;
             rtxtDescripcion.Text = "";
             // 
@@ -271,6 +271,7 @@
             Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold);
             Name = "ProductoForms";
             Text = "Gestion de Productos";
+            Load += ProductoForms_Load;
             ((System.ComponentModel.ISupportInitialize)npdId).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
