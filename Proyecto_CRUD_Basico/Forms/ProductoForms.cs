@@ -24,7 +24,7 @@ namespace Proyecto_CRUD_Basico.Forms
                 Nombre = txtNombre.Text,
                 CodigoBarra = txtCodigoBarra.Text,
                 Descripcion = rtxtDescripcion.Text,
-                Precio = Convert.ToDecimal(txtPrecio.Text),
+                Precio = Convert.ToInt32(txtPrecio.Text),
                 Categoria = cmbCategoria.Text,
                 Stock = Convert.ToInt32(txtStock.Text),
             };
@@ -73,7 +73,7 @@ namespace Proyecto_CRUD_Basico.Forms
                 Nombre = txtNombre.Text,
                 CodigoBarra = txtCodigoBarra.Text,
                 Descripcion = rtxtDescripcion.Text,
-                Precio = Convert.ToDecimal(txtPrecio.Text),
+                Precio = Convert.ToInt32(txtPrecio.Text),
                 Categoria = cmbCategoria.Text,
                 Stock = Convert.ToInt32(txtStock.Text),
             };

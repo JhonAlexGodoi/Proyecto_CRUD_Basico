@@ -1,30 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Proyecto_CRUD_Basico.Controllers;
+﻿using Microsoft.EntityFrameworkCore;
+using Proyecto_CRUD_Basico.Model.Context;
 using Proyecto_CRUD_Basico.Model.Entities;
 
 namespace Proyecto_CRUD_Basico.Model.Services
 {
     public class CategoriaServices
     {
-        private List<Categoria> tablaCategorias;
+        //private List<Categoria> tablaCategorias;
+        private readonly AplicationDbContext _context;
 
         public CategoriaServices()
         {
-            tablaCategorias = new List<Categoria>();
+            //tablaCategorias = new List<Categoria>();
+            var optionsBuilder = new DbContextOptionsBuilder<AplicationDbContext>();
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TresCapas;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+
+            _context = new AplicationDbContext(optionsBuilder.Options);
         }
 
         public List<Categoria> GetAllCategorias()
         {
-            return tablaCategorias;
+            return _context.Categoria.ToList();
         }
 
         public Categoria? GetCategoriaById(int id)
         {
-            return tablaCategorias.Find(c => c.Id == id);
+            return _context.Categoria.Find(id);
         }
 
         public bool CreateCategoria(Categoria categoria)
@@ -33,7 +34,8 @@ namespace Proyecto_CRUD_Basico.Model.Services
             {
                 if (categoria == null)
                     return false;
-                tablaCategorias.Add(categoria);
+                _context.Categoria.Add(categoria);
+                _context.SaveChanges();
                 return true;
             }
             catch (Exception ex)
@@ -52,6 +54,7 @@ namespace Proyecto_CRUD_Basico.Model.Services
                 {
                     categoriaUpdate.Nombre = categoria.Nombre;
                     categoriaUpdate.IsActive = categoria.IsActive;
+                    _context.SaveChanges();
                     return true;
                 }
                 return false;
@@ -70,7 +73,8 @@ namespace Proyecto_CRUD_Basico.Model.Services
                 var categoriaToDelete = GetCategoriaById(id);
                 if (categoriaToDelete != null)
                 {
-                    tablaCategorias.Remove(categoriaToDelete);
+                    _context.Categoria.Remove(categoriaToDelete);
+                    _context.SaveChanges();
                     return true;
                 }
                 return false;
